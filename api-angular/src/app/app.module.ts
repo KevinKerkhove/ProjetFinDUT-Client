@@ -6,13 +6,19 @@ import { AppComponent } from './app.component';
 import { EdutiantComponent } from './edutiant/edutiant.component';
 import { HomeComponent } from './home/home.component';
 import { CoursComponent } from './cours/cours.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { EditAbsenceComponent } from './absence/edit-absence/edit-absence.component';
+import { FormAbsenceComponent } from './absence/form-absence/form-absence.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EdutiantComponent,
     HomeComponent,
-    CoursComponent
+    CoursComponent,
+    PageNotFoundComponent,
+    EditAbsenceComponent,
+    FormAbsenceComponent
   ],
   imports: [
     BrowserModule,
