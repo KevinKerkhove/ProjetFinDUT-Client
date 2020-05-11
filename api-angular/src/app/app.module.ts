@@ -9,6 +9,7 @@ import { CoursComponent } from './cours/cours.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { EditAbsenceComponent } from './absence/edit-absence/edit-absence.component';
 import { FormAbsenceComponent } from './absence/form-absence/form-absence.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FormAbsenceComponent } from './absence/form-absence/form-absence.compon
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NoopAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
