@@ -1,5 +1,5 @@
 {
-  "name": "api-angular2",
+  "name": "client-absences",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -11,16 +11,16 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~8.2.14",
+    "@angular/animations": "^8.2.14",
+    "@angular/cdk": "^9.2.4",
     "@angular/common": "~8.2.14",
     "@angular/compiler": "~8.2.14",
     "@angular/core": "~8.2.14",
     "@angular/forms": "~8.2.14",
+    "@angular/material": "^9.2.4",
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
-    "angular-calendar": "^0.28.15",
-    "date-fns": "^2.13.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

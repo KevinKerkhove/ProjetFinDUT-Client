@@ -1,0 +1,6 @@
+<h1>La liste des creneaux</h1>
+<ul>
+  <li *ngFor="let creneau of listeCreneau ">
+    id creneau: {{creneau.id}}, date: {{ creneau.dateDeDebut}}, duree: {{creneau.duree}}, module: {{creneau.idModule}}, salle: {{creneau.salle}}, enseignant: {{creneau.idEnseignant}}, groupe: {{creneau.idGroupe}}
+  </li>
+</ul>

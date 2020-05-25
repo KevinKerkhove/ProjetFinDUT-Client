@@ -1,24 +1,37 @@
-export class User {
+export interface  User {
   id: number;
   nom: string;
   prenom: string;
-  dateDeNaiss: number;
+  dateDeNaiss: string;
   email: string;
   avatar: string;
   grade: boolean;
   role: string;
-  password: string;
-
-  // tslint:disable-next-line:max-line-length
-  constructor(id: number, nom: string, prenom: string, dateDeNaiss: number, email: string, avatar: string, grade: boolean, role: string, password: string) {
-    this.id = id;
-    this.nom = nom;
-    this.prenom = prenom;
-    this.dateDeNaiss = dateDeNaiss;
-    this.email = email;
-    this.avatar = avatar;
-    this.grade = grade;
-    this.role = role;
-    this.password = password;
-  }
+  password?: string;
 }
+export const UTILISATEUR = [
+  {
+    id: 1,
+    nom: 'Duchmol',
+    prenom: 'Robert',
+    dateDeNaiss: '1999-01-12',
+    email: 'duchmol.robert@domain.fr',
+    avatar: null,
+    grade: false,
+    role: 'etudiant',
+    password: null
+  },
+  {
+    id: 2,
+    nom: 'Soulax',
+    prenom: 'Abdel',
+    dateDeNaiss: '1980-03-19',
+    email: 'Soulax.Abdel@domain.fr',
+    avatar: null,
+    grade: false,
+    role: 'enseignant',
+    password: null
+  }
+];
+
+

@@ -1,0 +1,48 @@
+<div fxLayoutAlign="center center">
+  <mat-card fxFlex="80">
+
+    <mat-toolbar color="accent">
+      {{pageTitle}}
+    </mat-toolbar>
+
+    <mat-card-content fxLayout="column" fxLayoutAlign="center" class="illus1-card-content">
+
+      <form [formGroup]="editForm" (ngSubmit)="onSubmit()" fxLayoutAlign="stretch" fxLayout="column">
+
+        <mat-form-field>
+          <Input matInput placeholder="Motif" formControlName="Motif">
+          <div *ngIf="motif.invalid && (motif.dirty || motif.touched)" class="mat-error">
+            <div *ngIf="motif?.errors.required">Le Motif est obligatoire</div>
+          </div>
+        </mat-form-field>
+
+        <mat-checkbox>Justifiee</mat-checkbox>
+
+        <mat-form-field>
+          <Input matInput placeholder="document" formControlName="document">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Etudiant</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let etudiant of listEtudiants" [value]=" etudiant.id">
+              {{etudiant.nom}} {{etudiant.prenom}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Creneau</mat-label>
+          <mat-select [formControl]="editForm" multiple>
+            <mat-option *ngFor="let creneau of listCreneaux" [value]="creneau.id">
+              {{creneau.dateDeDebut}} {{creneau.duree}} {{creneau.salle}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button type="submit"  [disabled]="editForm.invalid" mat-stroked-button mat-raised-button color="accent">Valide
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
