@@ -14,7 +14,7 @@ export class FormAbsenceComponent implements OnInit {
   @Output() updatedAbsence: EventEmitter<Absences>;
   pageTitle: string;
   editForm: FormGroup;
-  listEtudiants: User[];
+  listEtudiants: User[] = [];
   listUser: User[] = UTILISATEUR;
   listCreneaux: Creneaux[] = CRENEAUX;
 
@@ -35,7 +35,7 @@ export class FormAbsenceComponent implements OnInit {
       idEtudiant: new FormControl('Etudiant'),
       idCreneau: new FormControl('Creneau')
     });
-    if (this.absence.id === -1) {
+    if (this.absence === undefined) {
       this.pageTitle = 'Création d\'une absence';
     } else {
       this.pageTitle = 'Modification d\'une absence';

@@ -16,6 +16,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 
@@ -38,7 +39,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatIconModule,
     MatListModule ,
     MatStepperModule,
-    MatInputModule
+    MatInputModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

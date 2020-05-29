@@ -18,4 +18,4 @@ export const CRENEAUX = [
     idGroupe: 1,
     idEnseignant: 2,
   }
-]
+];

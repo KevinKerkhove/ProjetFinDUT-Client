@@ -10,7 +10,7 @@
       <form [formGroup]="editForm" (ngSubmit)="onSubmit()" fxLayoutAlign="stretch" fxLayout="column">
 
         <mat-form-field>
-          <Input matInput placeholder="Motif" formControlName="Motif">
+          <input matInput placeholder="motif" formControlName="motif">
           <div *ngIf="motif.invalid && (motif.dirty || motif.touched)" class="mat-error">
             <div *ngIf="motif?.errors.required">Le Motif est obligatoire</div>
           </div>
@@ -19,7 +19,7 @@
         <mat-checkbox>Justifiee</mat-checkbox>
 
         <mat-form-field>
-          <Input matInput placeholder="document" formControlName="document">
+          <input matInput placeholder="document" formControlName="document">
         </mat-form-field>
 
         <mat-form-field>
@@ -33,7 +33,7 @@
 
         <mat-form-field>
           <mat-label>Creneau</mat-label>
-          <mat-select [formControl]="editForm" multiple>
+          <mat-select formControlName="idCreneau" >
             <mat-option *ngFor="let creneau of listCreneaux" [value]="creneau.id">
               {{creneau.dateDeDebut}} {{creneau.duree}} {{creneau.salle}}
             </mat-option>
