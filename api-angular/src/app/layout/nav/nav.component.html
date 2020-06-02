@@ -1,0 +1,51 @@
+<!--Navbar if user is connected -->
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark elegant-color" *ngIf="currentUser;">
+  <a class="navbar-brand" routerLink="/">Gestion absences</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+          aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/">Home
+        </a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/personnes/{{currentUser.id}}">{{currentUser.prenom}} {{currentUser.nom}}</a>
+      </li>
+      <li class="nav-item avatar" *ngIf="currentUser.avatar">
+        <a class="nav-link p-0">
+          <img src="{{currentUser.avatar}}" class="rounded-circle z-depth-0"
+               alt="avatar image" height="35">
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-effect waves-light" routerLink="/login" (click)="logout()">
+          <i class="fas fa-power-off"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!--Navbar if user is not connected -->
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark elegant-color" *ngIf="!currentUser;">
+  <a class="navbar-brand" routerLink="/">GameApp</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+          aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/login">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/register">Register</a>
+      </li>
+    </ul>
+  </div>
+</nav>

@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
+import {LOCALE_ID, NgModule} from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -17,13 +16,20 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { NavComponent } from './layout/nav/nav.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {HttpErrorInterceptorService} from './shared/http-error-interceptor.service';
+import {AuthService} from './shared/auth.service';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    NavComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +48,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatInputModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [AuthService,
+    {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptorService, multi: true},
+    [{provide: LOCALE_ID, useValue: 'fr-FR'}]],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

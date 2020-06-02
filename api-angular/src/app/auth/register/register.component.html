@@ -1,0 +1,102 @@
+<div fxFlexFill fxLayoutAlign="center center" *ngIf="!loading">
+
+  <div class="card" style="margin-top: 50px;">
+    <h5 class="card-header blue-grey lighten-2 white-text text-center py-4">
+      <strong>Sign up</strong>
+    </h5>
+    <!--Card content-->
+    <div class="card-body px-lg-5 pt-0">
+      <!-- Form -->
+      <form class="text-center" style="color: #757575;" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="form-row">
+          <div class="col">
+            <div class="md-form">
+              <input type="text" class="form-control" formControlName="nom" placeholder="Nom">
+            </div>
+          </div>
+          <div class="col">
+            <div class="md-form">
+              <input type="email"  class="form-control" formControlName="prenom" placeholder="Prenom">
+            </div>
+          </div>
+          <div class="col">
+            <div class="md-form">
+              <input type="date"  class="form-control" formControlName="dateDeNaiss" placeholder="Date de naissance">
+            </div>
+          </div>
+          <div class="col">
+            <div class="md-form">
+              <input type="checkbox"  class="form-control" formControlName="grade" placeholder="Old">
+              <label formControlName="grade">Directeur des études</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="md-form">
+              <input type="date"  class="form-control" formControlName="role" placeholder="Rôle">
+              <select formControlName="role">
+                <option value="">--Choisissez un role--</option>
+                <option value="etudiant">étudiant</option>
+                <option value="enseignant">enseignant</option>
+                <option value="secretariat">secretariat</option>
+                <option value="administrateur">administrateur</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <!-- E-mail -->
+        <div class="md-form mt-0">
+          <input type="email" class="form-control" formControlName="email" placeholder="@ mail">
+        </div>
+        <!-- Password -->
+        <div formGroupName="pwd">
+          <div class="md-form">
+            <input type="password"  class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock" placeholder="Password" formControlName="password">
+            <small class="form-text text-muted mb-4">
+              At least 8 characters and 1 digit
+            </small>
+          </div>
+          <!-- Confirm password -->
+          <div class="md-form">
+            <input type="password"  class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock" placeholder="Confirm password" formControlName="confirmPassword">
+          </div>
+        </div>
+        <!-- Error password -->
+        <div *ngIf="(password.invalid || password.value != confirmPassword.value) && (confirmPassword.touched)"
+             class="mat-error" fxFlex="100">
+          <div fxFlex="100"  *ngIf="password.invalid; else nomatch">
+            Le mot de passe doit contenir au moins 4 caractères.
+          </div>
+          <ng-template #nomatch >
+            Les mots de passe saisis ne correspondent pas.
+          </ng-template>
+        </div>
+        <!-- Sign up button -->
+        <button class="btn btn-outline-primary waves-effect my-4 waves-effect z-depth-0" type="submit">Sign in</button>
+        <p>Already a member?
+          <a routerLink="/login">Login</a>
+        </p>
+      </form>
+      <!-- Form -->
+    </div>
+    <!-- Card -->
+    <div class="card" *ngIf="error">
+      <!-- Card content -->
+      <div class="card-body">
+        <!-- Title -->
+        <h4 class="card-title"><a>{{error.error || error}}</a></h4>
+        <!-- Text -->
+        <p class="card-text" *ngIf="error.body">{{error.body|json}}</p>
+      </div>
+    </div>
+    <!-- Card -->
+  </div>
+  <!-- Error in form -->
+</div>
+
+<div class="container mt-5 flex-center text-info" *ngIf="loading">
+  <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+
+
