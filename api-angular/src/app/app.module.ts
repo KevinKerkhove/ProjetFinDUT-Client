@@ -22,6 +22,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {HttpErrorInterceptorService} from './shared/http-error-interceptor.service';
 import {AuthService} from './shared/auth.service';
 import {AngularMaterialModule} from "./angular-material.module";
+import {AuthModule} from "./auth/auth.module";
 
 
 
@@ -34,13 +35,14 @@ import {AngularMaterialModule} from "./angular-material.module";
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    AuthModule,
     UserModule,
     AbsenceModule,
     CreneauModule,
     HttpClientModule,
     ModuleModule,
     GroupeModule,
+    AppRoutingModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
