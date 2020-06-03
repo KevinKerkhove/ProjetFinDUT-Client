@@ -5,6 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {User} from '../models/user.model';
 import {tap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
+import {FileInput} from 'ngx-material-file-input';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +35,7 @@ export class UserService {
   }
 
 
-  updateUser(user: User, pwd: string): Observable<User> {
+  updateUser(user: User, pwd: string, file: FileInput): Observable<User> {
     const url = `${this.userUrl}/${user.id} `;
     const formData: FormData = new FormData();
     formData.append('nom', user.nom);
@@ -44,7 +45,10 @@ export class UserService {
     if (pwd) {
       formData.append('password', pwd);
     }
-    formData.append('avatar', user.avatar);
+    if (file) {
+      console.log('fichier avatar : ', file.fileNames);
+      formData.append('avatar', file.files[0], file.fileNames);
+    }
     formData.append('_method', 'PUT');
     return this.http.post<Observable<User>>(url, formData)
       .pipe(
