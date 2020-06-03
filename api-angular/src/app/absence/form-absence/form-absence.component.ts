@@ -29,7 +29,7 @@ export class FormAbsenceComponent implements OnInit {
 
   ngOnInit() {
     this.editForm = new FormGroup({
-      motif: new FormControl('motif', [Validators.required]),
+      motif: new FormControl(null, [Validators.required]),
       justifiee: new FormControl(false),
       document: new FormControl('document'),
       idEtudiant: new FormControl('Etudiant'),

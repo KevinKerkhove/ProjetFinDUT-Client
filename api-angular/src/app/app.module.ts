@@ -21,6 +21,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {HttpErrorInterceptorService} from './shared/http-error-interceptor.service';
 import {AuthService} from './shared/auth.service';
+import {AngularMaterialModule} from "./angular-material.module";
 
 
 
@@ -47,6 +48,7 @@ import {AuthService} from './shared/auth.service';
     MatListModule ,
     MatStepperModule,
     MatInputModule,
+    AngularMaterialModule,
     BrowserAnimationsModule
   ],
   providers: [AuthService,
