@@ -49,7 +49,7 @@ export const UTILISATEUR = [
     avatar: null,
     grade: false,
     role: Roles.Etudiant,
-    password: null
+    password: 'secret'
   },
   {
     id: 2,
