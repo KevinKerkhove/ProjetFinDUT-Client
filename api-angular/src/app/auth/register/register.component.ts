@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
   loading = false;
   error: any;
 
-  personne: User = new User(-1, '', '', '', '', '', false, Roles.Etudiant, '');
+  personne: User = new User(-1, '', '', '', '', '', false, Roles.Etudiant);
 
   constructor(private authService: AuthService, private router: Router) {
   }

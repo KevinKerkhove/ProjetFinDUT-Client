@@ -11,7 +11,7 @@ export class  User {
 
 
   constructor(id: number, nom: string, prenom: string, dateDeNaiss: string, email: string,
-              avatar: string, grade: boolean, role: Roles, password: string) {
+              avatar: string, grade: boolean, role: Roles) {
     this.id = id;
     this.nom = nom;
     this.prenom = prenom;
@@ -20,15 +20,12 @@ export class  User {
     this.avatar = avatar;
     this.grade = grade;
     this.role = role;
-    this.password = password;
   }
 
   static parse(personne: any) {
-    const user = User.parse(personne);
-    console.log('User : ', user);
     return new User(personne.id, personne.nom, personne.prenom,
       personne.dateDeNaiss, personne.email, personne.avatar,
-      personne.grade, personne.role, personne.password);
+      personne.grade, personne.role);
   }
 }
 
