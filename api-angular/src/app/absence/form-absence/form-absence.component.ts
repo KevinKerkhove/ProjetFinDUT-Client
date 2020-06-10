@@ -1,8 +1,12 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Absences} from '../../models/absence.model';
+import {Absence} from '../../models/absence.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {User, UTILISATEUR} from '../../models/user.model';
 import {CRENEAUX, Creneaux} from '../../models/creneau.model';
+import {FileInput, FileValidator} from 'ngx-material-file-input';
+import {AuthService} from '../../shared/auth.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AbsenceService} from '../absence.services';
 
 @Component({
   selector: 'app-form-absence',
@@ -10,16 +14,22 @@ import {CRENEAUX, Creneaux} from '../../models/creneau.model';
   styleUrls: ['./form-absence.component.css']
 })
 export class FormAbsenceComponent implements OnInit {
-  @Input() absence: Absences;
-  @Output() updatedAbsence: EventEmitter<Absences>;
+  @Input() absence: Absence;
+  @Output() updatedAbsence: EventEmitter<{absence: Absence, document: FileInput}>;
+  aAccept = '.png, .jpg, .jpeg';
   pageTitle: string;
   editForm: FormGroup;
+  maxSize = 300000;
+  error: any;
+  action: string;
+  documentFile: any = undefined;
   listEtudiants: User[] = [];
   listUser: User[] = UTILISATEUR;
   listCreneaux: Creneaux[] = CRENEAUX;
 
-  constructor() {
-    this.updatedAbsence = new EventEmitter<Absences>();
+  constructor(private authService: AuthService, private router: Router,
+              private route: ActivatedRoute, private service: AbsenceService, private authenticationService: AuthService) {
+    this.updatedAbsence = new EventEmitter<{absence: Absence, document: FileInput}>();
     this.listUser.forEach(user => {
       if (user.role === 'etudiant') {
         this.listEtudiants.push(user);
@@ -29,11 +39,11 @@ export class FormAbsenceComponent implements OnInit {
 
   ngOnInit() {
     this.editForm = new FormGroup({
-      motif: new FormControl(null, [Validators.required]),
+      motif: new FormControl('', [Validators.required]),
       justifiee: new FormControl(false),
-      document: new FormControl('document'),
-      idEtudiant: new FormControl('Etudiant'),
-      idCreneau: new FormControl('Creneau')
+      document: new FormControl(null, [FileValidator.maxContentSize(this.maxSize)]),
+      idEtudiant: new FormControl('', [Validators.required]),
+      idCreneau: new FormControl('', [Validators.required])
     });
     if (this.absence === undefined) {
       this.pageTitle = 'Création d\'une absence';
@@ -41,6 +51,10 @@ export class FormAbsenceComponent implements OnInit {
       this.pageTitle = 'Modification d\'une absence';
       this.fillForm();
     }
+  }
+
+  get accept() {
+    return this.aAccept;
   }
 
   get motif() {
@@ -63,17 +77,32 @@ export class FormAbsenceComponent implements OnInit {
     this.editForm.patchValue({
       motif: this.absence.motif,
       justifiee: this.absence.justifiee,
-      document: this.absence.document,
       idEtudiant: this.absence.idEtudiant,
       idCreneau: this.absence.idCreneau
     });
   }
 
   onSubmit() {
+    let document: FileInput;
     this.absence.motif = this.motif.value;
     this.absence.justifiee = this.justifiee.value;
-    this.absence.document = this.document.value;
     this.absence.idEtudiant = this.idEtudiant.value;
     this.absence.idCreneau = this.idCreneau.value;
+    if (this.document) {
+      document = this.document.value;
+    }
+    this.updatedAbsence.emit({
+      absence: this.absence,
+      document
+    });
+  }
+
+  documentLocal(file: FileInput) {
+    console.log('file : ', file);
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.documentFile = reader.result;
+    };
+    reader.readAsDataURL(file.files[0]);
   }
 }

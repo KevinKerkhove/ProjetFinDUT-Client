@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ABSENCES, Absences} from '../../models/absence.model';
+import {ABSENCES, Absence} from '../../models/absence.model';
 
 @Component({
   selector: 'app-list-absence',
@@ -7,7 +7,7 @@ import {ABSENCES, Absences} from '../../models/absence.model';
   styleUrls: ['./list-absence.component.css']
 })
 export class ListAbsenceComponent implements OnInit {
-  listAbsences: Absences[] = ABSENCES;
+  listAbsences: Absence[] = ABSENCES;
 
   constructor() { }
 

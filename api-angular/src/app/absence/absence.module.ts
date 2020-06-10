@@ -9,6 +9,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatCardModule} from '@angular/material/card';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatInputModule} from '@angular/material/input';
+import {MaterialFileInputModule} from 'ngx-material-file-input';
+import {AngularMaterialModule} from '../angular-material.module';
 
 
 
@@ -28,7 +30,9 @@ import {MatInputModule} from '@angular/material/input';
     MatToolbarModule,
     FormsModule,
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
+    MaterialFileInputModule,
+    AngularMaterialModule
   ]
 })
 export class AbsenceModule { }

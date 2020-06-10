@@ -21,8 +21,15 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {HttpErrorInterceptorService} from './shared/http-error-interceptor.service';
 import {AuthService} from './shared/auth.service';
-import {AngularMaterialModule} from "./angular-material.module";
-import {AuthModule} from "./auth/auth.module";
+import {AngularMaterialModule} from './angular-material.module';
+import {AuthModule} from './auth/auth.module';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/moment';
+import * as moment from 'moment';
+
+export function momentAdapterFactory() {
+  return adapterFactory(moment);
+}
 
 
 
@@ -51,7 +58,8 @@ import {AuthModule} from "./auth/auth.module";
     MatStepperModule,
     MatInputModule,
     AngularMaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: momentAdapterFactory })
   ],
   providers: [AuthService,
     {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptorService, multi: true},

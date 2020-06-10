@@ -1,48 +1,70 @@
-<div fxLayoutAlign="center center">
+<div fxFlexFill fxLayoutAlign="center center">
   <mat-card fxFlex="80">
+    <div class="card-body px-lg-5 pt-0">
+      <mat-toolbar color="accent">
+        {{pageTitle}}
+      </mat-toolbar>
 
-    <mat-toolbar color="accent">
-      {{pageTitle}}
-    </mat-toolbar>
+      <mat-card-content fxLayout="column" fxLayoutAlign="center" class="illus1-card-content">
 
-    <mat-card-content fxLayout="column" fxLayoutAlign="center" class="illus1-card-content">
-
-      <form [formGroup]="editForm" (ngSubmit)="onSubmit()" fxLayoutAlign="stretch" fxLayout="column">
-
-        <mat-form-field>
-          <input matInput placeholder="motif" formControlName="motif">
-          <div *ngIf="motif.invalid && (motif.dirty || motif.touched)" class="mat-error">
-            <div *ngIf="motif?.errors.required">Le Motif est obligatoire</div>
+        <form [formGroup]="editForm" (ngSubmit)="onSubmit()" fxLayoutAlign="stretch" fxLayout="column">
+          <div class="md-form">
+            <mat-form-field>
+              <input matInput placeholder="Motif" formControlName="motif">
+              <div *ngIf="motif.invalid && (motif.dirty || motif.touched)" class="mat-error">
+                <div *ngIf="motif?.errors.required">Le Motif est obligatoire</div>
+              </div>
+            </mat-form-field>
           </div>
-        </mat-form-field>
 
-        <mat-checkbox>Justifiee</mat-checkbox>
+          <mat-checkbox>Justifiee</mat-checkbox>
 
-        <mat-form-field>
-          <input matInput placeholder="document" formControlName="document">
-        </mat-form-field>
+          <div fxFlex="100">
+            <mat-form-field fxFlex="50">
+              <ngx-mat-file-input formControlName="document" placeholder="Choose avatar ..." [accept]="accept" #avatar
+                                  (change)="documentLocal(avatar.value)"></ngx-mat-file-input>
+              <mat-icon matSuffix>folder</mat-icon>
+              <div class="mat-error" *ngIf="document.invalid && document.touched">
+                Type de fichier non exploitable ou trop volumineux
+              </div>
+            </mat-form-field>
+            <p style="color: red;">
+              Cette modification prendra effet lors de votre prochaine connection
+            </p>
+            <div fxLayoutAlign="center center" fxFlexFill>
+              <img *ngIf="absence.document && !avatar.value" [src]="absence.document"
+                   class="image-preview" alt="">
+              <img *ngIf="documentFile" [src]="documentFile" class="image-preview">
+            </div>
+          </div>
 
-        <mat-form-field>
-          <mat-label>Etudiant</mat-label>
-          <mat-select>
-            <mat-option *ngFor="let etudiant of listEtudiants" [value]=" etudiant.id">
-              {{etudiant.nom}} {{etudiant.prenom}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
 
-        <mat-form-field>
-          <mat-label>Creneau</mat-label>
-          <mat-select formControlName="idCreneau" >
-            <mat-option *ngFor="let creneau of listCreneaux" [value]="creneau.id">
-              {{creneau.dateDeDebut}} {{creneau.duree}} {{creneau.salle}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+          <div class="md-form">
+            <mat-form-field>
+              <mat-label>Etudiant</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let etudiant of listEtudiants" [value]=" etudiant.id">
+                  {{etudiant.nom}} {{etudiant.prenom}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
 
-        <button type="submit"  [disabled]="editForm.invalid" mat-stroked-button mat-raised-button color="accent">Valide
-        </button>
-      </form>
-    </mat-card-content>
+          <div class="md-form">
+            <mat-form-field>
+              <mat-label>Creneau</mat-label>
+              <mat-select formControlName="idCreneau" >
+                <mat-option *ngFor="let creneau of listCreneaux" [value]="creneau.id">
+                  {{creneau.dateDeDebut}} {{creneau.duree}} {{creneau.salle}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <button type="submit" class="btn btn-outline-primary btn-rounded btn-block my-4 waves-effect z-depth-0">Valide</button>
+
+        </form>
+      </mat-card-content>
+    </div>
   </mat-card>
 </div>
