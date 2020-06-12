@@ -26,6 +26,9 @@ import {AuthModule} from './auth/auth.module';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/moment';
 import * as moment from 'moment';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr);
 
 export function momentAdapterFactory() {
   return adapterFactory(moment);

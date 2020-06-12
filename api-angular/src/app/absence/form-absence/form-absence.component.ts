@@ -35,6 +35,7 @@ export class FormAbsenceComponent implements OnInit {
         this.listEtudiants.push(user);
       }
     });
+    this.absence = new Absence(0, undefined, false, undefined, undefined, undefined)
   }
 
   ngOnInit() {
